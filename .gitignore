@@ -29,6 +29,10 @@ Temporary Items
 
 
 ### Bower ###
+dev/lib
 
 # Node modules
 node_modules
+
+# dist
+www
