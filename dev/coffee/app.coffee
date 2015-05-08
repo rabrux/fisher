@@ -1,4 +1,3 @@
-console.log 'lorem'
 # define [
 # 	'angular'
 # 	# 'cs!controllers/init'
