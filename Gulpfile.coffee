@@ -20,7 +20,7 @@ paths =
     'dev/config/main.less'
   ]
   templates: [
-    'dev/templates/*.html'
+    # 'dev/templates/*.html'
     'dev/templates/**/*.html'
   ]
 
@@ -83,7 +83,7 @@ gulp.task 'watch', ->
   # gulp.watch [ paths.images ], [ 'custom-images' ]
   gulp.watch [ paths.styles ], [ 'less' ]
   gulp.watch [ paths.scripts ], [ 'compile-js' ]
-  gulp.watch [ paths.html ], [ 'html' ]
+  gulp.watch [ paths.templates ], [ 'html' ]
   gulp.watch [ 'dev/index.html' ], [ 'index' ]
   gulp.watch [ appPaths ], [ 'livereload' ]
   return

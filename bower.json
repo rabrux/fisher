@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
 		"angular": "~1.4.*",
-		"angular-route": "~1.4.*",
+		"angular-ui-router": "~0.2.14",
 		"requirejs": "~2.1.*",
 		"require-cs": "latest",
 		"angular-recaptcha": "master"

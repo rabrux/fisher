@@ -6,13 +6,13 @@ require.config({
 	baseUrl: "app",
 	paths: {
 		'angular': '../lib/angular/angular.min',
-		'angular-route': '../lib/angular-route/angular-route',
+		'uiRouter': '../lib/angular-ui-router/release/angular-ui-router.min',
 		'reCaptcha': '../lib/angular-recaptcha/release/angular-recaptcha.min',
 		'cs': '../lib/require-cs/cs',
 		'coffee-script': '../lib/coffeescript/extras/coffee-script',
 		'app': 'app.min',
 		//'routes': 'routes',
-		//'appBoot': '../config/bootstrap'
+		'appBoot': '../config/bootstrap'
 	},
 	shim: {
 		'angular': { 'exports': 'angular' },
