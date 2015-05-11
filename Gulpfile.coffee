@@ -11,89 +11,111 @@ uglify     = require 'gulp-uglify'
 watch      = require 'gulp-watch'
 
 paths =
+  config: 'dev/config/boot.coffee'
   scripts: [
-    'dev/coffee/*.coffee'
     'dev/coffee/**/*.coffee'
+    'dev/coffee/*.coffee'
   ]
   styles: [
     'dev/less/*.less'
     'dev/config/main.less'
   ]
   templates: [
-    # 'dev/templates/*.html'
+    'dev/templates/*.html'
     'dev/templates/**/*.html'
   ]
+  images: [
+    'dev/images/**/*.*'
+    'dev/images/*.*'
+  ]
+  app: [
+    'www/**/*.js'
+    'www/**/*.css'
+    'www/templates/**/*.html'
+    'www/templates/*.html'
+    'www/images/*.*'
+    'www/images/**/*.*'
+    'www/*.html'
+  ]
 
-appPaths = [
-  'www/*.html'
-  'www/*.js'
-  'www/*.css'
-]
+gulp.task 'copy-images', ->
+  gulp.src(paths.images)
+    .pipe gulp.dest('www/images')
+  return
 
-gulp.task 'copy', ->
-  gulp.src(['dev/lib/**']).pipe gulp.dest('www/lib')
+gulp.task 'build-config', ->
+  gulp.src(paths.config)
+    .pipe(coffee())
+    .pipe(uglify())
+    .pipe gulp.dest('www/config')
   gulp.src(['dev/config/main.js']).pipe gulp.dest('www/config')
   return
 
-gulp.task 'compile-js', ->
-  # Minify and copy all JavaScript (except vendor scripts)
-  # with sourcemaps all the way down
+gulp.task 'copy-lib', ->
+  gulp.src(['dev/lib/**']).pipe gulp.dest('www/lib')
+  return
+
+gulp.task 'compile-coffee', ->
   gulp.src(paths.scripts)
-    .pipe(sourcemaps.init())
-      .pipe(coffee())
-      .pipe(uglify())
-      .pipe(concat('app.min.js'))
-    .pipe(sourcemaps.write())
+    .pipe(coffee().on('error', (err) ->
+      console.log err.message
+      @emit 'end'
+    ))
+    .pipe(uglify())
+    .pipe(concat('app.min.js'))
     .pipe gulp.dest('www/app')
   return
 
 gulp.task 'less', ->
-  gulp.src('dev/config/main.less')
-    .pipe(less())
+  return gulp.src('dev/config/main.less')
+    .pipe(less().on('error', (err) ->
+      console.log err.message
+      @emit 'end'
+    ))
     .pipe(minifyCSS())
     .pipe(concat('style.min.css'))
-    .pipe gulp.dest('www/css')
+    .pipe(gulp.dest('www/css'))
 
-gulp.task 'html', ->
+gulp.task 'templates', ->
   gulp.src(paths.templates).pipe(minifyHTML()).pipe gulp.dest('www/templates')
+  return
 
 gulp.task 'index', ->
   gulp.src('dev/index.html').pipe gulp.dest('www')
+  return
 
-###*
-# Server
-###
 gulp.task 'connect', ->
   connect.server
     root: 'www'
     livereload: true
   return
 
-###*
-# Livereload
-###
-gulp.task 'livereload', ->
-  connect.reload()
+gulp.task 'refresh', ->
+  gulp.src(paths.app)
+    .pipe connect.reload()
   return
 
 ###*
-# Watch custom files
+# Watch files
 ###
 gulp.task 'watch', ->
-  # gulp.watch [ paths.images ], [ 'custom-images' ]
+  gulp.watch [ paths.config ], [ 'build-config' ]
+  gulp.watch [ paths.scripts ], [ 'compile-coffee' ]
   gulp.watch [ paths.styles ], [ 'less' ]
-  gulp.watch [ paths.scripts ], [ 'compile-js' ]
-  gulp.watch [ paths.templates ], [ 'html' ]
+  gulp.watch [ paths.templates ], [ 'templates' ]
   gulp.watch [ 'dev/index.html' ], [ 'index' ]
-  gulp.watch [ appPaths ], [ 'livereload' ]
+  gulp.watch [ paths.images ], [ 'copy-images' ]
+  gulp.watch [ paths.app ], [ 'refresh' ]
   return
 
 gulp.task 'default', [
-  'index'
-  'copy'
-  'html'
-  'compile-js'
+  'build-config'
+  'copy-lib'
+  'copy-images'
+  'compile-coffee'
   'less'
+  'templates'
+  'index'
   'connect'
   'watch'
 ]

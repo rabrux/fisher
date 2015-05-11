@@ -12,7 +12,7 @@ require.config({
 		'coffee-script': '../lib/coffeescript/extras/coffee-script',
 		'app': 'app.min',
 		//'routes': 'routes',
-		'appBoot': '../config/bootstrap'
+		//'appBoot': '../config/bootstrap'
 	},
 	shim: {
 		'angular': { 'exports': 'angular' },

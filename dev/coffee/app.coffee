@@ -1,7 +1,4 @@
-define ['angular'], (angular) ->
+requirejs ['angular', 'uiRouter'], (ng) ->
 
-	return angular
+	return ng
 		.module('app', ['ui.router'])
-		.run ($rootScope, $templateCache) ->
-			$rootScope.$on '$viewContentLoader', () ->
-				$templateCache.removeAll
