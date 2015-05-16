@@ -11,7 +11,7 @@ uglify     = require 'gulp-uglify'
 watch      = require 'gulp-watch'
 
 paths =
-  config: 'dev/config/boot.coffee'
+  config: 'dev/config/main.js'
   scripts: [
     'dev/coffee/*.coffee'
     'dev/coffee/**/*.coffee'
@@ -33,11 +33,7 @@ paths =
   ]
 
 gulp.task 'build-config', ->
-  gulp.src(paths.config)
-    .pipe(coffee())
-    .pipe(uglify())
-    .pipe gulp.dest('www/config')
-  gulp.src(['dev/config/main.js']).pipe gulp.dest('www/config')
+  gulp.src(paths.config).pipe gulp.dest('www/config')
   return
 
 gulp.task 'copy-lib', ->

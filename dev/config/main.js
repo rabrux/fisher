@@ -8,10 +8,7 @@ require.config({
 		'angular': '../lib/angular/angular.min',
 		'uiRouter': '../lib/angular-ui-router/release/angular-ui-router.min',
 		'reCaptcha': '../lib/angular-recaptcha/release/angular-recaptcha.min',
-		'cs': '../lib/require-cs/cs',
-		'coffee-script': '../lib/coffeescript/extras/coffee-script',
-		'app': 'app.min',
-		'boot': '../config/boot'
+		'app': 'app.min'
 	},
 	shim: {
 		'angular': { 'exports': 'angular' },
@@ -20,5 +17,4 @@ require.config({
 	}
 });
 
-requirejs(['boot']);
-//requirejs(['cs!appBoot']);
+requirejs(['app']);
