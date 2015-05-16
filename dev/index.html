@@ -5,6 +5,17 @@
   <title>App</title>
 </head>
 <body>
-  <script data-main="config/main.js" src="lib/requirejs/require.js"></script>
+
+  <div ui-view></div>
+
+  <!-- libs -->
+  <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+  <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <!-- endlibs -->
+
+  <!-- app -->
+  <script type="text/javascript" src="app/app.min.js"></script>
+  <!-- endapp -->
+
 </body>
 </html>

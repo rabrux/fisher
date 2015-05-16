@@ -1,20 +1,17 @@
-requirejs ['angular', 'uiRouter'], (ng) ->
+angular
+  .module('app')
+  .config [
+    '$stateProvider'
+    '$urlRouterProvider'
+    ($stateProvider, $urlRouterProvider) ->
 
-  return ng
-    .module('app')
-    .config [
-	    '$stateProvider'
-	    '$urlRouterProvider'
-	    ($stateProvider, $urlRouterProvider) ->
+      $urlRouterProvider.otherwise '/'
 
-	      $urlRouterProvider.otherwise '/'
+      $stateProvider
+        .state('index',
+          url: '/'
+          templateUrl: 'templates/home/index.html'
+        )
 
-	      $stateProvider
-	        .state('index',
-            url: '/'
-            templateUrl: 'templates/home/index.html'
-            controller: 'HomeCtrl'
-          )
-
-	      return
-	  ]
+      return
+  ]

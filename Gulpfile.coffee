@@ -11,7 +11,6 @@ uglify     = require 'gulp-uglify'
 watch      = require 'gulp-watch'
 
 paths =
-  config: 'dev/config/boot.coffee'
   scripts: [
     'dev/coffee/**/*.coffee'
     'dev/coffee/*.coffee'
@@ -44,10 +43,6 @@ gulp.task 'copy-images', ->
   return
 
 gulp.task 'build-config', ->
-  gulp.src(paths.config)
-    .pipe(coffee())
-    .pipe(uglify())
-    .pipe gulp.dest('www/config')
   gulp.src(['dev/config/main.js']).pipe gulp.dest('www/config')
   return
 
@@ -99,7 +94,7 @@ gulp.task 'refresh', ->
 # Watch files
 ###
 gulp.task 'watch', ->
-  gulp.watch [ paths.config ], [ 'build-config' ]
+  # gulp.watch [ paths.config ], [ 'build-config' ]
   gulp.watch [ paths.scripts ], [ 'compile-coffee' ]
   gulp.watch [ paths.styles ], [ 'less' ]
   gulp.watch [ paths.templates ], [ 'templates' ]
