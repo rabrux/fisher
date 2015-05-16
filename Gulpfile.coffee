@@ -24,16 +24,27 @@ paths =
     'dev/templates/*.html'
     'dev/templates/**/*.html'
   ]
+  images: [
+    'dev/images/**/*.*'
+    'dev/images/*.*'
+  ]
   app: [
     'www/**/*.js'
     'www/**/*.css'
     'www/templates/**/*.html'
     'www/templates/*.html'
+    'www/images/*.*'
+    'www/images/**/*.*'
     'www/*.html'
   ]
 
+gulp.task 'copy-images', ->
+  gulp.src(paths.images)
+    .pipe gulp.dest('www/images')
+  return
+
 gulp.task 'build-config', ->
-  gulp.src(paths.config).pipe gulp.dest('www/config')
+  gulp.src(['dev/config/main.js']).pipe gulp.dest('www/config')
   return
 
 gulp.task 'copy-lib', ->
@@ -42,19 +53,24 @@ gulp.task 'copy-lib', ->
 
 gulp.task 'compile-coffee', ->
   gulp.src(paths.scripts)
-    .pipe(coffee())
+    .pipe(coffee().on('error', (err) ->
+      console.log err.message
+      @emit 'end'
+    ))
     .pipe(uglify())
     .pipe(concat('app.min.js'))
     .pipe gulp.dest('www/app')
   return
 
 gulp.task 'less', ->
-  gulp.src('dev/config/main.less')
-    .pipe(less())
+  return gulp.src('dev/config/main.less')
+    .pipe(less().on('error', (err) ->
+      console.log err.message
+      @emit 'end'
+    ))
     .pipe(minifyCSS())
     .pipe(concat('style.min.css'))
-    .pipe gulp.dest('www/css')
-  return
+    .pipe(gulp.dest('www/css'))
 
 gulp.task 'templates', ->
   gulp.src(paths.templates).pipe(minifyHTML()).pipe gulp.dest('www/templates')
@@ -84,12 +100,14 @@ gulp.task 'watch', ->
   gulp.watch [ paths.styles ], [ 'less' ]
   gulp.watch [ paths.templates ], [ 'templates' ]
   gulp.watch [ 'dev/index.html' ], [ 'index' ]
+  gulp.watch [ paths.images ], [ 'copy-images' ]
   gulp.watch [ paths.app ], [ 'refresh' ]
   return
 
 gulp.task 'default', [
   'build-config'
   'copy-lib'
+  'copy-images'
   'compile-coffee'
   'less'
   'templates'
