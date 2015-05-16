@@ -11,15 +11,12 @@ require.config({
 		'cs': '../lib/require-cs/cs',
 		'coffee-script': '../lib/coffeescript/extras/coffee-script',
 		'app': 'app.min',
-		//'routes': 'routes',
-		//'appBoot': '../config/bootstrap'
 	},
 	shim: {
 		'angular': { 'exports': 'angular' },
-		'angular-route': ['angular'],
+		'uiRouter': { 'deps': ['angular'] },
 		'reCaptcha': ['angular']
 	}
 });
 
-requirejs(['app']);
-//requirejs(['cs!appBoot']);
+requirejs(['boot']);

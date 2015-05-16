@@ -12,8 +12,8 @@ watch      = require 'gulp-watch'
 
 paths =
   scripts: [
-    'dev/coffee/**/*.coffee'
     'dev/coffee/*.coffee'
+    'dev/coffee/**/*.coffee'
   ]
   styles: [
     'dev/less/*.less'
@@ -94,7 +94,7 @@ gulp.task 'refresh', ->
 # Watch files
 ###
 gulp.task 'watch', ->
-  # gulp.watch [ paths.config ], [ 'build-config' ]
+  gulp.watch [ 'dev/config/main.js' ], [ 'build-config' ]
   gulp.watch [ paths.scripts ], [ 'compile-coffee' ]
   gulp.watch [ paths.styles ], [ 'less' ]
   gulp.watch [ paths.templates ], [ 'templates' ]
