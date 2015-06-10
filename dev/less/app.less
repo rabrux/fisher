@@ -3,4 +3,32 @@ body {
   table {
     color: #555;
   }
+	button {
+		&.btn {
+			&.btn-clear {
+				border: none;
+				background: none;
+			}
+			&.btn-add {
+				i {
+					font-size: 1.4em;
+					color: #9c0;
+				}
+			}
+			&.btn-remove {
+				i {
+					font-size: 1.4em;
+					color: #900;
+				}
+			}
+			&.btn-full {
+				width: 100%;
+				font-size: 1.4em;
+			}
+		}
+	}
+}
+
+*:focus, *:active, *:hover {
+	outline: transparent;
 }

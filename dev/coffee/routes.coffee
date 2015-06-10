@@ -11,7 +11,7 @@ angular
         .state('index',
           url: '/'
           templateUrl: 'templates/home/index.html'
-          controller: 'HomeCtrl'
+          controller: 'FisherCtrl'
         )
 
       return

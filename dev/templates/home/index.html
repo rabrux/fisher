@@ -1,1 +1,88 @@
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum ducimus sit reprehenderit, temporibus ullam maiores, delectus aliquid modi, odit quam consequuntur facilis voluptatum nesciunt. Ut sit, eaque ad qui. Commodi.
+<section class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h2>Clase 1</h2>
+      <div class="row" data-ng-repeat="item in classOne">
+        <div class="col-xs-2">X <sub>{{ $index + 1 }}</sub></div>
+        <div class="col-xs-4">{{ item.x }}</div>
+        <div class="col-xs-4">{{ item.y }}</div>
+        <div class="col-xs-2"><button class="btn btn-clear btn-remove"><i class="ion-android-remove-circle" data-ng-click="remove(classOne, $index)"></i></button></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2">X <sub>n</sub></div>
+        <div class="col-xs-4"><input type="text" data-ng-model="model1.x" class="form-control"></div>
+        <div class="col-xs-4"><input type="text" data-ng-model="model1.y" class="form-control"></div>
+        <button class="btn btn-clear btn-add" data-ng-click="add(classOne, model1)"><i class="ion-android-add-circle"></i></button>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h2>Clase 2</h2>
+      <div class="row" data-ng-repeat="item in classTwo">
+        <div class="col-xs-2">X <sub>{{ classOne.length + $index + 1 }}</sub></div>
+        <div class="col-xs-4">{{ item.x }}</div>
+        <div class="col-xs-4">{{ item.y }}</div>
+        <div class="col-xs-2"><button class="btn btn-clear btn-remove"><i class="ion-android-remove-circle" data-ng-click="remove(classTwo, $index)"></i></button></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-2">X <sub>n</sub></div>
+        <div class="col-xs-4"><input type="text" data-ng-model="model2.x" class="form-control"></div>
+        <div class="col-xs-4"><input type="text" data-ng-model="model2.y" class="form-control"></div>
+        <button class="btn btn-clear btn-add" data-ng-click="add(classTwo, model2)"><i class="ion-android-add-circle"></i></button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-5">
+      <button class="btn btn-primary btn-full" data-ng-click="calculate()">Calcular</button>
+    </div>
+  </div>
+</section>
+
+<section id="proccess" class="container" data-ng-controller="RenderCtrl">
+  <div class="row m1">
+    <h2>M1</h2>
+
+    <button data-ng-click="renderM($parent.classOne, $parent.m1, 'math-m1')">Update</button>
+
+    <span id="math-m1">
+    $$
+      m1 =
+      \frac{1}{ /n/ } \left(
+      /class/
+      \right)
+      = \left[\begin{matrix} /m.x/ \\ /m.y/ \end{matrix} \right]
+    $$
+    </span>
+
+    <!-- <span id="m1">{{Expression}}</span> -->
+
+    <!-- $$
+    m1 =
+    \frac{1}{ {{ classOne.length }} } \left(
+      {{ renderM(classOne) }}
+    \right)
+    = \left[\begin{matrix} {{ m1.x }} \\ 2 \end{matrix} \right]
+    $$
+
+    {{ m1 }} -->
+  </div>
+  <div class="row m2">
+    <h2>M2</h2>
+    <!-- $$
+    m2 =
+    \frac{1}{ {{ classOne.length }} } \left(
+      {{ renderM(classTwo) }}
+    \right)
+    $$ -->
+  </div>
+  <div class="row s1">
+    <h2>S1</h2>
+    <div class="col-sm-3">
+    </div>
+  </div>
+  <div class="row s2">
+    <h2>S2</h2>
+    <div class="col-sm-3">
+    </div>
+  </div>
+</section>

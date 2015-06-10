@@ -101,7 +101,7 @@ gulp.task 'watch', ->
   gulp.watch [ paths.templates ], [ 'templates' ]
   gulp.watch [ 'dev/index.html' ], [ 'index' ]
   gulp.watch [ paths.images ], [ 'copy-images' ]
-  gulp.watch [ paths.app ], [ 'refresh' ]
+  # gulp.watch [ paths.app ], [ 'refresh' ]
   return
 
 gulp.task 'default', [

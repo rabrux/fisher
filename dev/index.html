@@ -3,13 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>App</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.min.css">
 </head>
 <body>
 
+  <header>
+    <div class="container">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus recusandae, nihil provident quo excepturi autem explicabo est mollitia, atque distinctio tempore libero, sunt praesentium. Porro suscipit mollitia, esse non provident.</div>
+  </header>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['(',')']]}
+    });
+  </script>
+
 	<div ui-view></div>
 
   <!-- libraries -->
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <!--
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=configured&dummy=.js"></script>
+   -->
+
+  <script type="text/javascript" src="lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
   <script type="text/javascript" src="lib/angular/angular.min.js"></script>
   <script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
   <!-- end libraries -->
