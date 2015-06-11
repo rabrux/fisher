@@ -78,13 +78,13 @@ angular.module('app')
         # ]
         # Suma de los valores de la clase 1
         for item in $scope.classOne
-          sum1.x += parseInt(item.x)
-          sum1.y += parseInt(item.y)
+          sum1.x += parseFloat(item.x)
+          sum1.y += parseFloat(item.y)
 
         # Suma de los valores de la clase 2
         for item in $scope.classTwo
-          sum2.x += parseInt(item.x)
-          sum2.y += parseInt(item.y)
+          sum2.x += parseFloat(item.x)
+          sum2.y += parseFloat(item.y)
 
         # Calculando m1
         m1.x = (1 / $scope.classOne.length) * sum1.x
