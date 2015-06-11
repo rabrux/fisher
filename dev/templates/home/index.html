@@ -38,11 +38,9 @@
   </div>
 </section>
 
-<section id="proccess" class="container" data-ng-controller="RenderCtrl">
+<section id="proccess" class="container" data-ng-controller="RenderCtrl" data-ng-show="isCalculate">
   <div class="row m1">
-    <h2>M1</h2>
-
-    <button data-ng-click="renderM($parent.classOne, $parent.m1, 'math-m1')">Update</button>
+    <h2>Cálculo de m<sub>1</sub></h2>
 
     <span id="math-m1">
     $$
@@ -54,35 +52,242 @@
     $$
     </span>
 
-    <!-- <span id="m1">{{Expression}}</span> -->
-
-    <!-- $$
-    m1 =
-    \frac{1}{ {{ classOne.length }} } \left(
-      {{ renderM(classOne) }}
-    \right)
-    = \left[\begin{matrix} {{ m1.x }} \\ 2 \end{matrix} \right]
-    $$
-
-    {{ m1 }} -->
   </div>
   <div class="row m2">
-    <h2>M2</h2>
-    <!-- $$
-    m2 =
-    \frac{1}{ {{ classOne.length }} } \left(
-      {{ renderM(classTwo) }}
-    \right)
-    $$ -->
+    <h2>Cálculo de m<sub>2</sub></h2>
+
+    <span id="math-m2">
+    $$
+      m1 =
+      \frac{1}{ /n/ } \left(
+      /class/
+      \right)
+      = \left[\begin{matrix} /m.x/ \\ /m.y/ \end{matrix} \right]
+    $$
+    </span>
+
   </div>
   <div class="row s1">
-    <h2>S1</h2>
-    <div class="col-sm-3">
-    </div>
+    <h2>Cálculo de S<sub>1</sub></h2>
+
+    <h4>paso 1</h4>
+    <span id="math-sp1">
+    $$
+      S_{1} =
+      \left[
+        \left[
+          \begin{matrix}
+            1 \\ 5
+          \end{matrix}
+        \right]
+        \left[
+          \begin{matrix}
+            1 & 5
+          \end{matrix}
+        \right]
+      \right]
+    $$
+    </span>
+
+    <h4>paso 2</h4>
+    <span id="math-sm1">
+    $$
+      S_{1} =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+    $$
+    </span>
+
+    <h4>Resultado S<sub>1</sub></h4>
+    <span id="math-s1">
+    $$
+      S_{1} =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+    $$
+    </span>
+
   </div>
   <div class="row s2">
-    <h2>S2</h2>
-    <div class="col-sm-3">
-    </div>
+    <h2>Cálculo de S<sub>2</sub></h2>
+
+    <h4>paso 1</h4>
+    <span id="math-sp2">
+    $$
+      S_{1} =
+      \left[
+        \left[
+          \begin{matrix}
+            1 \\ 5
+          \end{matrix}
+        \right]
+        \left[
+          \begin{matrix}
+            1 & 5
+          \end{matrix}
+        \right]
+      \right]
+    $$
+    </span>
+
+    <h4>paso 2</h4>
+    <span id="math-sm2">
+    $$
+      S_{1} =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+    $$
+    </span>
+
+    <h4>Resultado S<sub>2</sub></h4>
+    <span id="math-s2">
+    $$
+      S_{1} =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+    $$
+    </span>
+
+  </div>
+
+  <div class="row">
+    <h2>Cálculo de S<sub>w</sub></h2>
+    <span id="math-swpw">
+    $$
+      S_{w} =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+      =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+    $$
+    </span>
+    <h4>Resultado</h4>
+    <span id="math-sw">
+    $$
+      S_{w} =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+    $$
+    </span>
+  </div>
+
+  <div class="row">
+    <h2>S<sub>w</sub><sup>-1</sup> </h2>
+    <span id="math-swm1w">
+    $$
+      S_{w} =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+    $$
+    </span>
+  </div>
+
+  <div class="row">
+    <h2>W</h2>
+    <span id="math-wp">
+    $$
+      W =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+      \left(
+        \left[
+          \begin{matrix}
+            2 \\ 8
+          \end{matrix}
+        \right]
+        -
+        \left[
+        \begin{matrix}
+          2 \\ 8
+        \end{matrix}
+        \right]
+      \right)
+    $$
+    </span>
+
+    <h4>Paso 1</h4>
+    <span id="math-wpr">
+    $$
+      W =
+      \left[
+        \begin{matrix}
+          1 & 2 \\
+          1 & 3
+        \end{matrix}
+      \right]
+      \left(
+        \left[
+          \begin{matrix}
+            2 \\ 8
+          \end{matrix}
+        \right]
+        -
+        \left[
+        \begin{matrix}
+          2 \\ 8
+        \end{matrix}
+        \right]
+      \right)
+    $$
+    </span>
+
+    <h4>Resultado</h4>
+    <span id="math-w">
+    $$
+      W =
+      \left[
+        \begin{matrix}
+          1 & 2
+        \end{matrix}
+      \right]
+    $$
+    </span>
+  </div>
+
+  <div class="row">
+    <h2>Ys</h2>
+    <span id="math-y">
+      $$
+      Y_{1} = 256.458 \\
+      Y_{1} = 256.458
+      $$
+    </span>
   </div>
 </section>

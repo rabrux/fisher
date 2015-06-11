@@ -42,6 +42,9 @@ angular.module('app')
         return
 
       $scope.calculate = ->
+        m1 = { x: 0, y: 0 }
+        m2 = { x: 0, y: 0 }
+        m12 = { x: 0, y: 0 }
         sum1 = { x: 0, y: 0 }
         sum2 = { x: 0, y: 0 }
         $scope.m1 = m1 = { x: 0, y: 0 }
@@ -52,6 +55,10 @@ angular.module('app')
         S2m = []
         S1 = { xx: 0, xy: 0, yx: 0, yy: 0 }
         S2 = { xx: 0, xy: 0, yx: 0, yy: 0 }
+        Sw_ = [
+          [ 0, 0 ]
+          [ 0, 0 ]
+        ]
         Sw = [
           [ 0, 0 ]
           [ 0, 0 ]
@@ -60,6 +67,11 @@ angular.module('app')
           [ 1, 0 ]
           [ 0, 1 ]
         ]
+        W = [
+          [ 0, 0 ]
+          [ 0, 0 ]
+        ]
+        Y = []
         # Sw = [
         #   { xx: 0, xy: 0, yx: 0, yy: 0 }
         #   { gxx: 0, gxy: 0, gyx: 0, gyy: 0 }
@@ -124,6 +136,16 @@ angular.module('app')
         Sw[1][0] = S1.yx + S2.yx
         Sw[1][1] = S1.yy + S2.yy
 
+
+
+        a = 0
+        while a < Sw.length
+          b = 0
+          while b < Sw.length
+            Sw_[a][b] = Sw[a][b]
+            b++
+          a++
+
         # Cálculo inversa de SW
         i = 0
         while i < Sw.length
@@ -153,10 +175,61 @@ angular.module('app')
             j++
           i++
 
-        console.log 'SW', Sw
-        console.log 'Swmq', Swm1
+        # Cálculo de (m1 - m2)
+        m12.x = m1.x - m2.x
+        m12.y = m1.y - m2.y
 
+        # Cálculo W
+        W = [
+          Swm1[0][0] * m12.x + Swm1[0][1] * m12.y
+          Swm1[1][0] * m12.x + Swm1[1][1] * m12.y
+        ]
+
+        # Cálculo de Ys
+        for item in $scope.classOne
+          Y.push W[0] * item.x + W[1] * item.y
+
+        for item in $scope.classTwo
+          Y.push W[0] * item.x + W[1] * item.y
+
+        $scope.Y = Y
+
+        # Render M
         $scope.child.renderM($scope.classOne, m1, 'math-m1')
+        $scope.child.renderM($scope.classTwo, m2, 'math-m2')
+
+        # Render Sp
+        $scope.child.renderSp(S1p, 'math-sp1')
+        $scope.child.renderSp(S2p, 'math-sp2')
+
+        # Render Sm
+        $scope.child.renderSm(S1m, 'math-sm1')
+        $scope.child.renderSm(S2m, 'math-sm2')
+
+        # Render S matriz resultado
+        $scope.child.renderS(S1, 'math-s1')
+        $scope.child.renderS(S2, 'math-s2')
+
+        # Render Sw
+        $scope.child.renderSwf(S1, S2, 'math-swpw')
+        $scope.child.renderSw(Sw_, 'math-sw')
+
+        # Render Sw^-1
+        $scope.child.renderSw(Swm1, 'math-swm1w', true)
+
+        # Render W Sustitución
+        $scope.child.renderWp(Swm1, m1, m2, 'math-wp')
+
+        # Render W paso 1
+        $scope.child.renderWpr(Swm1, m12, 'math-wpr')
+
+        # Render W resultado
+        $scope.child.renderW(W, 'math-w')
+
+        # Render Ys
+        $scope.child.renderY(Y, 'math-y')
+
+        $scope.isCalculate = true
 
         return
 

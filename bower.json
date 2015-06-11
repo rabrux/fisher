@@ -17,6 +17,7 @@
   "dependencies": {
 		"angular": "~1.4.*",
 		"angular-ui-router": "~0.2.14",
-    "MathJax": "~2.5.3"
+    "MathJax": "~2.5.3",
+    "fraction.js": "~2.2.0"
 	}
 }
