@@ -14,6 +14,10 @@ angular.module('app')
         x: 0
         y: 0
 
+      $scope.modeln =
+        x: 0
+        y: 0
+
       $scope.classOne = []
       $scope.classOne = [
         { x: 1, y: 3 }
@@ -186,11 +190,15 @@ angular.module('app')
         ]
 
         # Cálculo de Ys
+        d1 = []
+        d2 = []
         for item in $scope.classOne
           Y.push W[0] * item.x + W[1] * item.y
+          d1.push [ W[0] * item.x + W[1] * item.y, 0 ]
 
         for item in $scope.classTwo
           Y.push W[0] * item.x + W[1] * item.y
+          d2.push [ W[0] * item.x + W[1] * item.y, 0 ]
 
         $scope.Y = Y
 
@@ -229,9 +237,55 @@ angular.module('app')
         # Render Ys
         $scope.child.renderY(Y, 'math-y')
 
+        # Render graph
+        options =
+          points:
+            show: true
+          xaxis:
+            tickDecimals: 0
+            tickSize: 1
+
+        $.plot("#placeholder", [{data: d1, label: 'Clase 1'}, {data: d2, label: 'Clase 2'}], options)
+
+        $scope.W = W
+        $scope.d1 = d1
+        $scope.d2 = d2
+
+        $scope.d1_ = $scope.d1.concat()
+        $scope.d2_ = $scope.d2.concat()
+
         $scope.isCalculate = true
 
         return
+
+      $scope.evaluate = ->
+        newPoint = $scope.W[0] * $scope.modeln.x + $scope.W[1] * $scope.modeln.y
+        minor1 = Math.sqrt(Math.pow(($scope.d1[0][0] - newPoint), 2))
+        minor2 = Math.sqrt(Math.pow(($scope.d2[0][0] - newPoint), 2))
+        for item in $scope.d1
+          distance = Math.sqrt(Math.pow((item[0] - newPoint), 2))
+          if distance < minor1
+            minor1 = distance
+
+        for item in $scope.d2
+          distance = Math.sqrt(Math.pow((item[0] - newPoint), 2))
+          if distance < minor2
+            minor2 = distance
+
+        if minor1 < minor2
+          $scope.d1_.push [newPoint, 0]
+        else
+          $scope.d2_.push [newPoint, 0]
+
+        options =
+          points:
+            show: true
+          xaxis:
+            tickDecimals: 0
+            tickSize: 1
+
+        $.plot("#placeholder", [{data: $scope.d1_, label: 'Clase 1'}, {data: $scope.d2_, label: 'Clase 2'}], options)
+
 
       return
   ]
