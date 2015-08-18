@@ -73,7 +73,7 @@
     <h2>Cálculo de S<sub>1</sub></h2>
 
     <h4>Formúla $$ S_{i} = \sum{ \left( x_{j} - m_{i} \right) \left( x_{j} - m_{i} \right)^{t} } $$</h4>
-    
+
     <h4>paso 1</h4>
     <span id="math-sp1">
     $$
@@ -124,7 +124,7 @@
     <h2>Cálculo de S<sub>2</sub></h2>
 
     <h4>Formúla $$ S_{i} = \sum{ \left( x_{j} - m_{i} \right) \left( x_{j} - m_{i} \right)^{t} } $$</h4>
-    
+
     <h4>paso 1</h4>
     <span id="math-sp2">
     $$
@@ -307,5 +307,16 @@
       Y_{1} = 256.458
       $$
     </span>
+  </div>
+
+  <div class="row">
+    <div id="placeholder" class="col-xs-12 col-sm-6"></div>
+    <div class="col-xs-12 col-sm-6">
+      <h5>Nuevo punto</h5>
+      <div class="col-xs-2">X <sub>n</sub></div>
+      <div class="col-xs-4"><input type="text" data-ng-model="modeln.x" class="form-control"></div>
+      <div class="col-xs-4"><input type="text" data-ng-model="modeln.y" class="form-control"></div>
+      <button class="btn btn-primary" data-ng-click="evaluate()">Evaluar</button>
+    </div>
   </div>
 </section>
