@@ -83,6 +83,7 @@ gulp.task 'index', ->
 gulp.task 'connect', ->
   connect.server
     root: 'www'
+    port: 8181
     livereload: true
   return
 
